@@ -122,20 +122,27 @@ export default function OnTheSubjectOfKeypads() {
   const [result, setResult] = useState([]);
 
   const addMarked = symbol => () => {
-    const _selectedSymbols = [...selectedSymbols, symbol];
+    const _selectedSymbols = [...selectedSymbols];
+    if (_selectedSymbols.includes(symbol)) {
+      _selectedSymbols.splice(_selectedSymbols.findIndex(symbol), 1);
+    } else {
+
+    }
     setSelectedSymbols(_selectedSymbols);
 
     if (_selectedSymbols.length === 4) {
       const pattern = patterns.find(pattern =>
         _selectedSymbols.every(symbol => pattern.includes(symbol))
       );
-      const _result = [];
-      for (let i = 0; i < pattern.length; i++) {
-        if (_selectedSymbols.includes(pattern[i])) {
-          _result.push(pattern[i]);
+      if (pattern) {
+        const _result = [];
+        for (let i = 0; i < pattern.length; i++) {
+          if (_selectedSymbols.includes(pattern[i])) {
+            _result.push(pattern[i]);
+          }
         }
+        setResult(_result);
       }
-      setResult(_result);
     }
   };
 
@@ -158,31 +165,37 @@ export default function OnTheSubjectOfKeypads() {
         </Button>
       </Box>
       <Divider />
-      <Box p="16px">
+      <Box p="16px" display="flex" flexWrap="wrap">
         {symbols.map(symbol => {
           const exists = selectedSymbols.includes(symbol);
 
           return (
-            <img
-              onClick={addMarked(symbol)}
-              src={getIconUrl(symbol)}
-              style={{
-                width: "50px",
-                height: "50px",
-                border: exists ? "5px solid black" : ""
-              }}
-            />
+            <Box mr="16px">
+              <img
+                onClick={addMarked(symbol)}
+                src={getIconUrl(symbol)}
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  outline: exists ? "5px solid black" : ""
+                }}
+              />
+            </Box>
           );
         })}
-        <Box mt="2em">
-          <Typography variant="h6">Result:</Typography>
-          {result.map(s => (
+      </Box>
+      <Divider />
+      <Box p="16px">
+        <Typography variant="h6">Key:</Typography>
+
+        {result.map(s => (
+          <Box mr="16px">
             <img
               src={getIconUrl(s)}
               style={{ width: "50px", height: "50px" }}
             />
-          ))}
-        </Box>
+          </Box>
+        ))}
       </Box>
     </Paper>
   );
