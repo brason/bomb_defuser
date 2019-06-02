@@ -56,7 +56,10 @@ export default function OnTheSubjectOfTheButton() {
         <Box mr="16px">
           <Typography>Color</Typography>
         </Box>
-        <ColorSelector onChange={col => setColor(col)} selected={color} />
+        <ColorSelector 
+          colors={["b", "w", "y", "r"]}
+          onChange={col => setColor(col)}
+          selected={color} />
       </Box>
       <Divider />
       <Box display="flex" alignItems="center" p="16px">

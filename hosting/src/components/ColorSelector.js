@@ -4,6 +4,7 @@ import yellow from "@material-ui/core/colors/yellow";
 import Box from "@material-ui/core/Box";
 import Check from "mdi-material-ui/Check";
 import React from "react";
+import { green } from "@material-ui/core/colors";
 
 function getColor(color) {
   const mapper = {
@@ -11,7 +12,8 @@ function getColor(color) {
     w: "white",
     b: blue[500],
     r: red[500],
-    y: yellow[500]
+    y: yellow[500],
+    g: green[500]
   };
   return mapper[color];
 }
@@ -35,8 +37,8 @@ function Color({ color, selected, onClick }) {
   );
 }
 
-export default function ColorSelector({ selected, onChange }) {
-  return ["b", "w", "k", "y", "r"].map(color => (
+export default function ColorSelector({ colors, selected, onChange }) {
+  return colors.map(color => (
     <Box mr="16px" color={color}>
       <Color
         onClick={() => onChange(color)}

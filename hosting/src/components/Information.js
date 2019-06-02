@@ -91,10 +91,18 @@ export default function Information() {
       </Box>
 
       <Box p="2em">
-            <Typography>Strikes</Typography>
-            <Checkbox style={{background: 'Salmon'}}>1</Checkbox>
-            <Checkbox style={{background: 'Salmon'}}>2</Checkbox>
-            <Checkbox style={{background: 'Salmon'}}>3</Checkbox>
+        <Typography>Strikes</Typography>
+        <Box display="flex" mt="8px">
+          {[0, 1, 2].map(i => (
+            <Box mr="16px">
+              <SelctableChip
+                selected={i === strikes}
+                label={i}
+                onClick={() => onStrikesChange(i)}
+              />
+            </Box>
+          ))}
+        </Box>
       </Box>
 
     </Paper>

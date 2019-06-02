@@ -8,6 +8,7 @@ import State from "./State";
 import OnTheSubjectOfWires from "./components/OnTheSubjectOfWires";
 import OnTheSubjectOfTheButton from "./components/OnTheSubjectOfTheButton";
 import OnTheSubjectOfKeypads from "./components/OnTheSubjectOfKeypads";
+import OnTheSubjectOfSimonSays from "./components/OnTheSubjectOfSimonSays";
 
 export default function App() {
   return (
@@ -31,6 +32,9 @@ export default function App() {
             </Box>
             <Box mb="16px">
               <OnTheSubjectOfKeypads />
+            </Box>
+            <Box mb="10em">
+              <OnTheSubjectOfSimonSays/>
             </Box>
           </Box>
         </Box>

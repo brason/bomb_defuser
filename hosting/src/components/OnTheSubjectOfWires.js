@@ -111,6 +111,7 @@ export default function OnTheSubjectOfWires() {
               <Typography>Wire {i + 1}</Typography>
             </Box>
             <ColorSelector
+              colors={["b", "w", "k", "y", "r"]}
               onChange={(color) => handleWireChange(i, color)}
               selected={wireColor}
             />

@@ -7,6 +7,7 @@ export default function State({ children }) {
   const [serialNumber, setSerialNumber] = useState('');
   const [indicators, setIndicators] = useState(["", "", ""]);
   const [ports, setPorts] = useState([]);
+  const [strikes, setStrikes] = useState(0);
 
   const handleBatteryCountChange = count => {
     setBatteryCount(count);
@@ -29,6 +30,11 @@ export default function State({ children }) {
       setPorts([...ports, port]);
     }
   };
+
+  const handleStrikesChange = count => {
+    setStrikes(count);
+  }
+
   return (
     <Context.Provider
       value={{
@@ -36,10 +42,12 @@ export default function State({ children }) {
         serialNumber,
         ports,
         indicators,
+        strikes,
         onBatteryCountChange: handleBatteryCountChange,
         onSerialNumberChange: handleSerialNumberChange,
         onIndicatorsChange: handleIndicatorsChange,
-        onPortChange: handlePortChange
+        onPortChange: handlePortChange,
+        onStrikesChange: handleStrikesChange
       }}
     >
       {children}
