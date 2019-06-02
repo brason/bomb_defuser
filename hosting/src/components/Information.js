@@ -35,7 +35,7 @@ export default function Information() {
       <Box p="16px">
         <Typography>Batteries</Typography>
         <Box display="flex" mt="8px">
-          {[1, 2, 3, 4].map(i => (
+          {[0, 1, 2, 3, 4].map(i => (
             <Box mr="16px">
               <SelctableChip
                 selected={i === batteryCount}

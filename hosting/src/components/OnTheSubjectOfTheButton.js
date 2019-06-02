@@ -9,20 +9,21 @@ import SelectableChip from "./SelectableChip";
 import ColorSelector from "./ColorSelector";
 
 function getAction(color, label, batteryCount, indicators) {
+  const hold = "HOLD - BLUE: 4, YELLOW: 5, OTHER: 1";
   if (color === "b" && label === "ABORT") {
-    return "HOLD";
+    return hold;
   } else if (batteryCount > 1 && label === "DETONATE") {
     return "PRESS AND RELEASE";
   } else if (color === "w" && indicators.includes("car")) {
-    return "HOLD";
+    return hold;
   } else if (batteryCount > 2 && indicators.includes("frk")) {
     return "PRESS AND RELEASE";
   } else if (color === "y") {
-    return "HOLD";
+    return hold;
   } else if (color === "r" && label === "HOLD") {
     return "PRESS AND RELEASE";
   } else {
-    return "HOLD";
+    return hold;
   }
 }
 
@@ -31,6 +32,11 @@ export default function OnTheSubjectOfTheButton() {
 
   const [color, setColor] = useState();
   const [label, setLabel] = useState();
+
+  function reset() {
+    setColor("");
+    setLabel("");
+  }
 
   return (
     <Paper>
@@ -41,7 +47,9 @@ export default function OnTheSubjectOfTheButton() {
         justifyContent="space-between"
       >
         <Typography variant="h6">On the Subject of The Button</Typography>
-        <Button variant="outlined">Reset</Button>
+        <Button onClick={() => reset()} variant="outlined">
+          Reset
+        </Button>
       </Box>
       <Divider />
       <Box display="flex" alignItems="center" p="16px">
@@ -55,7 +63,7 @@ export default function OnTheSubjectOfTheButton() {
         <Box mr="16px">
           <Typography>Text</Typography>
         </Box>
-        {["HOLD", "ABORT", "DETONATE"].map(lab => (
+        {["HOLD", "ABORT", "DETONATE", "OTHER"].map(lab => (
           <Box mr="16px">
             <SelectableChip
               onClick={() => setLabel(lab)}

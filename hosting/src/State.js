@@ -3,10 +3,10 @@ import React, { useState } from "react";
 export const Context = React.createContext(null);
 
 export default function State({ children }) {
-  const [batteryCount, setBatteryCount] = useState(1);
-  const [serialNumber, setSerialNumber] = useState('abcd123');
-  const [indicators, setIndicators] = useState(["car", "", ""]);
-  const [ports, setPorts] = useState(["Parallel"]);
+  const [batteryCount, setBatteryCount] = useState(0);
+  const [serialNumber, setSerialNumber] = useState('');
+  const [indicators, setIndicators] = useState(["", "", ""]);
+  const [ports, setPorts] = useState([]);
 
   const handleBatteryCountChange = count => {
     setBatteryCount(count);
