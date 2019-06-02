@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { TextField } from "@material-ui/core";
+import { TextField, Checkbox } from "@material-ui/core";
 import { Context } from "../State";
 import SelctableChip from "./SelectableChip";
 import Divider from "@material-ui/core/Divider";
@@ -14,10 +14,12 @@ export default function Information() {
     serialNumber,
     indicators,
     ports,
+    strikes,
     onBatteryCountChange,
     onSerialNumberChange,
     onIndicatorsChange,
-    onPortChange
+    onPortChange,
+    onStrikesChange
   } = useContext(Context);
 
   return (
@@ -87,6 +89,14 @@ export default function Information() {
           )}
         </Box>
       </Box>
+
+      <Box p="2em">
+            <Typography>Strikes</Typography>
+            <Checkbox style={{background: 'Salmon'}}>1</Checkbox>
+            <Checkbox style={{background: 'Salmon'}}>2</Checkbox>
+            <Checkbox style={{background: 'Salmon'}}>3</Checkbox>
+      </Box>
+
     </Paper>
   );
 }
