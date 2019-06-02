@@ -7,11 +7,11 @@ import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
 
-function getPassword(comb1, comb2) {
+function getPassword(comb1, comb2, comb3) {
   const f = (a, b) => a.map(d => b.map(e => [...d, ...e])).flat();
   const cartesian = (a, b, ...c) => (b ? cartesian(f(a, b), ...c) : a);
 
-  const combinations = cartesian([...comb1], [...comb2]).map(s => s.join(""));
+  const combinations = cartesian([...comb1], [...comb2], [...comb3]).map(s => s.join(""));
 
   const words = [
     "about",
@@ -53,7 +53,7 @@ function getPassword(comb1, comb2) {
 
   const candidates = [];
   for (const word of words) {
-    if (combinations.includes(word[0] + word[1])) {
+    if (combinations.includes(word[0] + word[1] + word[2])) {
       candidates.push(word);
     }
   }
@@ -63,18 +63,18 @@ function getPassword(comb1, comb2) {
 export default function OnTheSubjectOfPasswords() {
   const { batteryCount, serialNumber, indicators, ports } = useContext(Context);
 
-  const [lettersAtPosition, setLettersAtPosition] = useState(["", ""]);
+  const [lettersAtPosition, setLettersAtPosition] = useState(["", "", ""]);
   const [canditates, setCanditates] = useState([]);
 
   const handleLettersChange = i => e => {
     const _lettersAtPosition = [...lettersAtPosition];
     _lettersAtPosition[i] = e.target.value;
     setLettersAtPosition(_lettersAtPosition);
-    setCanditates(getPassword(_lettersAtPosition[0], _lettersAtPosition[1]));
+    setCanditates(getPassword(_lettersAtPosition[0], _lettersAtPosition[1], _lettersAtPosition[2]));
   };
 
   const handleReset = () => {
-    setLettersAtPosition(['', '']);
+    setLettersAtPosition(['', '', '']);
     setCanditates([]);
   };
 
@@ -100,11 +100,18 @@ export default function OnTheSubjectOfPasswords() {
             onChange={handleLettersChange(0)}
           />
         </Box>
-        <Box>
+        <Box mr="1em">
           <TextField
             variant="outlined"
             label="Position 2"
             onChange={handleLettersChange(1)}
+          />
+        </Box>
+        <Box>
+          <TextField
+            variant="outlined"
+            label="Position 3"
+            onChange={handleLettersChange(2)}
           />
         </Box>
       </Box>
