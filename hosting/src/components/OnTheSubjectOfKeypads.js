@@ -124,9 +124,9 @@ export default function OnTheSubjectOfKeypads() {
   const addMarked = symbol => () => {
     const _selectedSymbols = [...selectedSymbols];
     if (_selectedSymbols.includes(symbol)) {
-      _selectedSymbols.splice(_selectedSymbols.findIndex(symbol), 1);
+      _selectedSymbols.splice(_selectedSymbols.indexOf(symbol), 1);
     } else {
-
+      _selectedSymbols.push(symbol);
     }
     setSelectedSymbols(_selectedSymbols);
 

@@ -33,13 +33,14 @@ export default function State({ children }) {
 
   const handleStrikesChange = count => {
     setStrikes(count);
-  }
+  };
 
   return (
     <Context.Provider
       value={{
         batteryCount,
         serialNumber,
+        lastDigitIsEvent: serialNumber[serialNumber.length - 1] % 2 === 0,
         ports,
         indicators,
         strikes,

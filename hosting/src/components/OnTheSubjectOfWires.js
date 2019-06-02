@@ -3,17 +3,16 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { Context } from "../State";
-import SelectableChip from "./SelectableChip";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import ColorSelector from "./ColorSelector";
 
 function getLetterCount(str, letter) {
-  const match = str.match(letter);
+  const match = str.match(new RegExp(`${letter}`, "g"));
   return match ? match.length : 0;
 }
 
-function getWireToCut(wires, lastDigitIsEven = true) {
+function getWireToCut(wires, lastDigitIsEven) {
   const wireCounts = {
     b: getLetterCount(wires, "b"),
     w: getLetterCount(wires, "w"),
@@ -72,12 +71,11 @@ function getWireToCut(wires, lastDigitIsEven = true) {
 }
 
 export default function OnTheSubjectOfWires() {
-  const { batteryCount, serialNumber, indicators, ports } = useContext(Context);
+  const { lastDigitIsEvent } = useContext(Context);
   const [wires, setWires] = useState(["", "", ""]);
   const [wireToCut, setWireToCut] = useState(-1);
 
   const handleWireChange = (i, color) => {
-    console.log(i);
     const _wires = [...wires];
     _wires[i] = color;
     if (i === _wires.length - 1 && i < 5) {
@@ -87,7 +85,7 @@ export default function OnTheSubjectOfWires() {
   };
 
   useEffect(() => {
-    setWireToCut(getWireToCut(wires.join("")));
+    setWireToCut(getWireToCut(wires.join(""), lastDigitIsEvent));
   }, [wires]);
 
   return (
@@ -112,7 +110,7 @@ export default function OnTheSubjectOfWires() {
             </Box>
             <ColorSelector
               colors={["b", "w", "k", "y", "r"]}
-              onChange={(color) => handleWireChange(i, color)}
+              onChange={color => handleWireChange(i, color)}
               selected={wireColor}
             />
           </Box>
