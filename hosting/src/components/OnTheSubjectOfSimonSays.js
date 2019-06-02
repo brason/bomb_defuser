@@ -66,7 +66,7 @@ export default function OnTheSubjectOfSimonSays() {
         setColors(_colors);
     }
 
-    const results = onTheSubjectOfSimonSays((/[aeiou]/).test(serialNumber), strikes, colors);
+    const results = onTheSubjectOfSimonSays(!(/[aeiou]/).test(serialNumber), strikes, colors);
     
     return (
         <Paper> 
