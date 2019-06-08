@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import {TextField, Checkbox} from "@material-ui/core";
-import {Context} from "../State";
+import { TextField, Checkbox } from "@material-ui/core";
+import { Context } from "../State";
 import SelctableChip from "./SelectableChip";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
@@ -23,17 +23,7 @@ export default function Information() {
   } = useContext(Context);
 
   return (
-    <Paper>
-      <Box
-        p="16px"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Typography variant="h6">Information</Typography>
-        <Button variant="outlined">Reset</Button>
-      </Box>
-      <Divider/>
+    <Box width="300px">
       <Box p="16px">
         <Typography>Strikes</Typography>
         <Box display="flex" mt="8px">
@@ -63,17 +53,19 @@ export default function Information() {
           ))}
         </Box>
       </Box>
-      <Divider/>
+      <Divider />
       <Box p="16px" display="flex">
-        <Box mr="16px">
-          <TextField
-            variant="outlined"
-            label="Serial number"
-            value={serialNumber}
-            onChange={e => onSerialNumberChange(e.target.value)}
-          />
-        </Box>
-        {["Indicator 1", "Indicator 2", "Indicator 3"].map((name, i) => {
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="Serial number"
+          value={serialNumber}
+          onChange={e => onSerialNumberChange(e.target.value)}
+        />
+      </Box>
+      <Divider />
+      <Box p="16px" display="flex">
+        {["Ind 1", "Ind 2", "Ind 3"].map((name, i) => {
           return (
             <Box mr="16px" width="120px">
               <TextField
@@ -86,13 +78,12 @@ export default function Information() {
           );
         })}
       </Box>
-      <Divider/>
       <Box p="16px">
         <Typography>Ports</Typography>
-        <Box display="flex" mt="8px">
+        <Box display="flex" mt="8px" flexWrap="wrap">
           {["DVI-D", "Parallel", "PS/2", "RJ-45", "Serial", "Stereo RCA"].map(
             port => (
-              <Box mr="16px">
+              <Box mr="16px" mb="16px">
                 <SelctableChip
                   selected={ports.includes(port)}
                   label={port}
@@ -103,6 +94,6 @@ export default function Information() {
           )}
         </Box>
       </Box>
-    </Paper>
+    </Box>
   );
 }

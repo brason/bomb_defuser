@@ -20,11 +20,11 @@ export default function App() {
             <Typography variant="h6">Bomb Defuser 2000</Typography>
           </Toolbar>
         </AppBar>
-        <Box pt="48px">
-          <Box p="16px">
-            <Box mb="16px">
-              <Information />
-            </Box>
+        <Box pt="48px" height="calc(100% - 48px)" display="flex">
+          <Box overflowY="auto">
+            <Information />
+          </Box>
+          <Box p="16px" style={{ overflowY: "auto" }}>
             <Box mb="16px">
               <OnTheSubjectOfWires />
             </Box>

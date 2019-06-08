@@ -53,9 +53,6 @@ export default function OnTheSubjectOfTheButton() {
       </Box>
       <Divider />
       <Box display="flex" alignItems="center" p="16px">
-        <Box mr="16px">
-          <Typography>Color</Typography>
-        </Box>
         <ColorSelector 
           colors={["b", "w", "y", "r"]}
           onChange={col => setColor(col)}
@@ -63,9 +60,6 @@ export default function OnTheSubjectOfTheButton() {
       </Box>
       <Divider />
       <Box display="flex" alignItems="center" p="16px">
-        <Box mr="16px">
-          <Typography>Text</Typography>
-        </Box>
         {["HOLD", "ABORT", "DETONATE", "OTHER"].map(lab => (
           <Box mr="16px">
             <SelectableChip

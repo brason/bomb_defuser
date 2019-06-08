@@ -3,24 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.0.1",
+    "@material-ui/core": "^4.0.2",
     "@material-ui/lab": "^4.0.0-alpha.6",
-    "@material-ui/styles": "^4.0.1",
+    "@material-ui/styles": "^4.0.2",
     "babel-plugin-direct-import": "^0.5.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.0.0-alpha.27",
     "dropbox": "^4.0.17",
-    "firebase": "^6.1.0",
+    "firebase": "^6.1.1",
     "mdi-material-ui": "^6.0.0",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
-    "react-dnd": "^7.4.5",
+    "react-dnd": "^7.6.0",
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.1.5",
     "react-interactjs-wrapper": "^0.1.7",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "use-react-router": "^1.0.7"
   },
@@ -50,6 +50,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "1.17.1"
+    "prettier": "1.18.2"
   }
 }
