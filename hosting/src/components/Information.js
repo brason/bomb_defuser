@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { TextField, Checkbox } from "@material-ui/core";
-import { Context } from "../State";
+import {TextField, Checkbox} from "@material-ui/core";
+import {Context} from "../State";
 import SelctableChip from "./SelectableChip";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
@@ -33,6 +33,21 @@ export default function Information() {
         <Typography variant="h6">Information</Typography>
         <Button variant="outlined">Reset</Button>
       </Box>
+      <Divider/>
+      <Box p="16px">
+        <Typography>Strikes</Typography>
+        <Box display="flex" mt="8px">
+          {[0, 1, 2].map(i => (
+            <Box mr="16px">
+              <SelctableChip
+                selected={i === strikes}
+                label={i}
+                onClick={() => onStrikesChange(i)}
+              />
+            </Box>
+          ))}
+        </Box>
+      </Box>
       <Divider />
       <Box p="16px">
         <Typography>Batteries</Typography>
@@ -48,17 +63,16 @@ export default function Information() {
           ))}
         </Box>
       </Box>
-      <Divider />
-      <Box p="16px">
-        <TextField
-          variant="outlined"
-          label="Serial number"
-          value={serialNumber}
-          onChange={e => onSerialNumberChange(e.target.value)}
-        />
-      </Box>
-      <Divider />
-      <Box display="flex" p="16px">
+      <Divider/>
+      <Box p="16px" display="flex">
+        <Box mr="16px">
+          <TextField
+            variant="outlined"
+            label="Serial number"
+            value={serialNumber}
+            onChange={e => onSerialNumberChange(e.target.value)}
+          />
+        </Box>
         {["Indicator 1", "Indicator 2", "Indicator 3"].map((name, i) => {
           return (
             <Box mr="16px" width="120px">
@@ -72,7 +86,7 @@ export default function Information() {
           );
         })}
       </Box>
-      <Divider />
+      <Divider/>
       <Box p="16px">
         <Typography>Ports</Typography>
         <Box display="flex" mt="8px">
@@ -89,22 +103,6 @@ export default function Information() {
           )}
         </Box>
       </Box>
-
-      <Box p="2em">
-        <Typography>Strikes</Typography>
-        <Box display="flex" mt="8px">
-          {[0, 1, 2].map(i => (
-            <Box mr="16px">
-              <SelctableChip
-                selected={i === strikes}
-                label={i}
-                onClick={() => onStrikesChange(i)}
-              />
-            </Box>
-          ))}
-        </Box>
-      </Box>
-
     </Paper>
   );
 }

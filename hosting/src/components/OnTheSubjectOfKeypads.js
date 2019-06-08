@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { Context } from "../State";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
-import SelectableChip from "./SelectableChip";
-import ColorSelector from "./ColorSelector";
 
 const baseUrl = "http://www.bombmanual.com/manual/1/html/img/symbols";
 
@@ -115,11 +113,13 @@ function getIconUrl(symbol) {
   return `${baseUrl}/${symbolNumber[symbol]}-${symbol}.png`;
 }
 
-export default function OnTheSubjectOfKeypads() {
-  const { batteryCount, serialNumber, indicators, ports } = useContext(Context);
+function getAvailableSymbols(symbols, patterns, selected) {
+  const availablePatterns = patterns.filter(pattern => selected.every(symbol => pattern.includes(symbol)));
+  return [...new Set(availablePatterns.flat())];
+}
 
+export default function OnTheSubjectOfKeypads() {
   const [selectedSymbols, setSelectedSymbols] = useState([]);
-  const [result, setResult] = useState([]);
 
   const addMarked = symbol => () => {
     const _selectedSymbols = [...selectedSymbols];
@@ -129,26 +129,10 @@ export default function OnTheSubjectOfKeypads() {
       _selectedSymbols.push(symbol);
     }
     setSelectedSymbols(_selectedSymbols);
-
-    if (_selectedSymbols.length === 4) {
-      const pattern = patterns.find(pattern =>
-        _selectedSymbols.every(symbol => pattern.includes(symbol))
-      );
-      if (pattern) {
-        const _result = [];
-        for (let i = 0; i < pattern.length; i++) {
-          if (_selectedSymbols.includes(pattern[i])) {
-            _result.push(pattern[i]);
-          }
-        }
-        setResult(_result);
-      }
-    }
   };
 
   const reset = () => {
     setSelectedSymbols([]);
-    setResult([]);
   };
 
   return (
@@ -166,7 +150,7 @@ export default function OnTheSubjectOfKeypads() {
       </Box>
       <Divider />
       <Box p="16px" display="flex" flexWrap="wrap">
-        {symbols.map(symbol => {
+        {getAvailableSymbols(symbols, patterns, selectedSymbols).map(symbol => {
           const exists = selectedSymbols.includes(symbol);
 
           return (
@@ -177,25 +161,13 @@ export default function OnTheSubjectOfKeypads() {
                 style={{
                   width: "50px",
                   height: "50px",
-                  outline: exists ? "5px solid black" : ""
+                  background: exists ? "red" : "",
+                  borderRadius: '4px'
                 }}
               />
             </Box>
           );
         })}
-      </Box>
-      <Divider />
-      <Box p="16px">
-        <Typography variant="h6">Key:</Typography>
-
-        {result.map(s => (
-          <Box mr="16px">
-            <img
-              src={getIconUrl(s)}
-              style={{ width: "50px", height: "50px" }}
-            />
-          </Box>
-        ))}
       </Box>
     </Paper>
   );
