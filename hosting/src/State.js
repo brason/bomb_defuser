@@ -4,10 +4,13 @@ export const Context = React.createContext(null);
 
 export default function State({ children }) {
   const [batteryCount, setBatteryCount] = useState(0);
-  const [serialNumber, setSerialNumber] = useState('');
+  const [serialNumber, setSerialNumber] = useState("");
   const [indicators, setIndicators] = useState(["", "", ""]);
   const [ports, setPorts] = useState([]);
   const [strikes, setStrikes] = useState(0);
+
+  const hasVowel = /[aeiou]/i.test(serialNumber);
+  const lastDigitIsEven = serialNumber[serialNumber.length - 1] % 2 === 0;
 
   const handleBatteryCountChange = count => {
     setBatteryCount(count);
@@ -44,6 +47,8 @@ export default function State({ children }) {
         ports,
         indicators,
         strikes,
+        hasVowel,
+        lastDigitIsEven,
         onBatteryCountChange: handleBatteryCountChange,
         onSerialNumberChange: handleSerialNumberChange,
         onIndicatorsChange: handleIndicatorsChange,

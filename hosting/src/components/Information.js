@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { TextField, Checkbox } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { Context } from "../State";
 import SelctableChip from "./SelectableChip";
 import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
 
 export default function Information() {
   const {

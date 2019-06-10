@@ -56,7 +56,7 @@ function onTheSubjectOfSimonSays(hasVowel, strikeCount, colors) {
 }
 
 export default function OnTheSubjectOfSimonSays() {
-  const { strikes, serialNumber } = useContext(Context);
+  const { strikes, hasVowel } = useContext(Context);
 
   const [colors, setColors] = useState([""]);
 
@@ -68,7 +68,7 @@ export default function OnTheSubjectOfSimonSays() {
   };
 
   const results = onTheSubjectOfSimonSays(
-    /[aeiou]/i.test(serialNumber),
+    hasVowel,
     strikes,
     colors
   );

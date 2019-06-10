@@ -11,7 +11,9 @@ function getPassword(comb1, comb2, comb3) {
   const f = (a, b) => a.map(d => b.map(e => [...d, ...e])).flat();
   const cartesian = (a, b, ...c) => (b ? cartesian(f(a, b), ...c) : a);
 
-  const combinations = cartesian([...comb1], [...comb2], [...comb3]).map(s => s.join(""));
+  const combinations = cartesian([...comb1], [...comb2], [...comb3]).map(s =>
+    s.join("")
+  );
 
   const words = [
     "about",
@@ -61,8 +63,6 @@ function getPassword(comb1, comb2, comb3) {
 }
 
 export default function OnTheSubjectOfPasswords() {
-  const { batteryCount, serialNumber, indicators, ports } = useContext(Context);
-
   const [lettersAtPosition, setLettersAtPosition] = useState(["", "", ""]);
   const [canditates, setCanditates] = useState([]);
 
@@ -70,11 +70,17 @@ export default function OnTheSubjectOfPasswords() {
     const _lettersAtPosition = [...lettersAtPosition];
     _lettersAtPosition[i] = e.target.value;
     setLettersAtPosition(_lettersAtPosition);
-    setCanditates(getPassword(_lettersAtPosition[0], _lettersAtPosition[1], _lettersAtPosition[2]));
+    setCanditates(
+      getPassword(
+        _lettersAtPosition[0],
+        _lettersAtPosition[1],
+        _lettersAtPosition[2]
+      )
+    );
   };
 
   const handleReset = () => {
-    setLettersAtPosition(['', '', '']);
+    setLettersAtPosition(["", "", ""]);
     setCanditates([]);
   };
 

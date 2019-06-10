@@ -114,7 +114,9 @@ function getIconUrl(symbol) {
 }
 
 function getAvailableSymbols(symbols, patterns, selected) {
-  const availablePatterns = patterns.filter(pattern => selected.every(symbol => pattern.includes(symbol)));
+  const availablePatterns = patterns.filter(pattern =>
+    selected.every(symbol => pattern.includes(symbol))
+  );
   return [...new Set(availablePatterns.flat())];
 }
 
@@ -162,7 +164,7 @@ export default function OnTheSubjectOfKeypads() {
                   width: "50px",
                   height: "50px",
                   background: exists ? "red" : "",
-                  borderRadius: '4px'
+                  borderRadius: "4px"
                 }}
               />
             </Box>
