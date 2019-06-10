@@ -13,6 +13,7 @@ import OnTheSubjectOfPasswords from "./components/OnTheSubjectOfPasswords";
 import OnTheSubjectOfWhosOnFirst from "./components/OnTheSubjectOfWhosOnFirst";
 import OnTheSubjectOfMemory from "./components/OnTheSubjectOfMemory";
 import OnTheSubjectOfComplicatedWires from "./components/OnTheSubjectOfComplicatedWires";
+import OnTheSubjectOfMazes from "./components/OnTheSubjectOfMazes";
 
 export default function App() {
   return (
@@ -28,29 +29,32 @@ export default function App() {
             <Information />
           </Box>
           <Box p="16px" style={{ overflowY: "auto" }}>
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfWires />*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfTheButton />*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfKeypads />*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfSimonSays />*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfPasswords />*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfWhosOnFirst />*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfMemory/>*/}
+            {/*</Box>*/}
+            {/*<Box mb="16px">*/}
+            {/*  <OnTheSubjectOfComplicatedWires/>*/}
+            {/*</Box>*/}
             <Box mb="16px">
-              <OnTheSubjectOfWires />
-            </Box>
-            <Box mb="16px">
-              <OnTheSubjectOfTheButton />
-            </Box>
-            <Box mb="16px">
-              <OnTheSubjectOfKeypads />
-            </Box>
-            <Box mb="16px">
-              <OnTheSubjectOfSimonSays />
-            </Box>
-            <Box mb="16px">
-              <OnTheSubjectOfPasswords />
-            </Box>
-            <Box mb="16px">
-              <OnTheSubjectOfWhosOnFirst />
-            </Box>
-            <Box mb="16px">
-              <OnTheSubjectOfMemory/>
-            </Box>
-            <Box>
-              <OnTheSubjectOfComplicatedWires/>
+              <OnTheSubjectOfMazes />
             </Box>
           </Box>
         </Box>
