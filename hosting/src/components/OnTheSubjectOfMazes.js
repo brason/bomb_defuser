@@ -5,8 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import { Context } from "../State";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import { TextField } from "@material-ui/core";
+import MaskedInput from "react-text-mask";
 
-const size = 25;
+const size = 21;
 
 const mazes = [
   [
@@ -146,10 +148,61 @@ const mazes = [
   ]
 ];
 
-export default function OnTheSubjectOfMazes() {
-  const { batteryCount, lastDigitIsEven, ports } = useContext(Context);
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
 
-  const reset = () => {};
+  return (
+    <MaskedInput
+      {...other}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[
+        "r",
+        "o",
+        "w",
+        ":",
+        " ",
+        /\d/,
+        " ",
+        "-",
+        " ",
+        "c",
+        "o",
+        "l",
+        ":",
+        " ",
+        /\d/
+      ]}
+    />
+  );
+}
+
+export default function OnTheSubjectOfMazes() {
+  const [markers, setMarkers] = useState({
+    marker1: "",
+    marker2: "",
+    start: "",
+    end: ""
+  });
+
+  useEffect(() => {
+    const [row, col] = markers.marker1.replace(/\D+/g, "").split("");
+    console.log(row, col);
+  }, [markers]);
+
+  const handleChange = m => event => {
+    setMarkers({ ...markers, [m]: event.currentTarget.value });
+  };
+
+  const reset = () => {
+    setMarkers({
+      marker1: "",
+      marker2: "",
+      start: "",
+      end: ""
+    });
+  };
 
   return (
     <Paper>
@@ -166,17 +219,40 @@ export default function OnTheSubjectOfMazes() {
       </Box>
       <Divider />
       <Box p="16px">
-        {mazes[0].map(row => (
-          <Box display="flex">
-            {row.map(cell => (
-              <Box
-                width={size}
-                height={size}
-                {...cell && { bgcolor: "black" }}
+        <Box display="flex" mb="16px">
+          {[
+            ["Marker 1", "marker1"],
+            ["Marker 2", "marker2"],
+            ["Start", "start"],
+            ["End", "end"]
+          ].map(([label, m]) => (
+            <Box mr="16px" width="140px">
+              <TextField
+                label={label}
+                variant="outlined"
+                value={markers[m]}
+                onFocus={event => event.currentTarget.select()}
+                onChange={handleChange(m)}
+                InputProps={{
+                  inputComponent: TextMaskCustom
+                }}
               />
-            ))}
-          </Box>
-        ))}
+            </Box>
+          ))}
+        </Box>
+        <Box>
+          {mazes[0].map(row => (
+            <Box display="flex">
+              {row.map(cell => (
+                <Box
+                  width={size}
+                  height={size}
+                  {...cell && { bgcolor: "black" }}
+                />
+              ))}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Paper>
   );
