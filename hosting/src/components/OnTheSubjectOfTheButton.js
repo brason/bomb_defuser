@@ -54,7 +54,7 @@ export default function OnTheSubjectOfTheButton() {
       <Divider />
       <Box display="flex" alignItems="center" p="16px">
         <ColorSelector
-          colors={["b", "w", "y", "r"]}
+          colors="bwyr"
           onChange={col => setColor(col)}
           selected={color}
         />

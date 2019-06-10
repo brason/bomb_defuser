@@ -18,7 +18,7 @@ function getColor(color) {
   return mapper[color];
 }
 
-function Color({ color, selected, onClick }) {
+export function Color({ color, selected, onClick }) {
   return (
     <Box
       width="48px"
@@ -38,13 +38,17 @@ function Color({ color, selected, onClick }) {
 }
 
 export default function ColorSelector({ colors, selected, onChange }) {
-  return colors.map(color => (
-    <Box mr="16px" color={color}>
-      <Color
-        onClick={() => onChange(color)}
-        selected={color === selected}
-        color={color}
-      />
+  return (
+    <Box display="flex">
+      {colors.split('').map(color => (
+        <Box mr="16px" color={color}>
+          <Color
+            onClick={() => onChange(color)}
+            selected={color === selected}
+            color={color}
+          />
+        </Box>
+      ))}
     </Box>
-  ));
+  );
 }

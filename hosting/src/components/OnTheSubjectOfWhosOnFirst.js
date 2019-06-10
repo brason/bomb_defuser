@@ -103,17 +103,20 @@ function getPosition(str) {
 }
 
 export default function OnTheSubjectOfWhosOnFirst() {
-  const [step1Result, setStep1Result] = useState("");
-  const [step2Result, setStep2Result] = useState("");
+  const [step1Word, setStep1Word] = useState("");
+  const [step2Word, setStep2Word] = useState("");
 
-  const reset = () => {};
+  const reset = () => {
+    setStep1Word("");
+    setStep2Word("");
+  };
 
   const handleStep1Click = word => {
-    setStep1Result(word);
+    setStep1Word(word);
   };
 
   const handleStep2Click = word => {
-    setStep2Result(Object.keys(step2).find(w => w === word));
+    setStep2Word(word);
   };
 
   return (
@@ -134,7 +137,7 @@ export default function OnTheSubjectOfWhosOnFirst() {
         <Box mr="16px">
           <Typography>Step 1</Typography>
         </Box>
-        <Typography>{getPosition(step1[step1Result])}</Typography>
+        <Typography>{getPosition(step1[step1Word])}</Typography>
       </Box>
       <Divider />
       <Box p="16px" display="flex" flexWrap="wrap">
@@ -146,6 +149,7 @@ export default function OnTheSubjectOfWhosOnFirst() {
                 onClick={() => handleStep1Click(word)}
                 variant="outlined"
                 label={word}
+                selected={step1Word === word}
                 style={{ width: "84px" }}
               />
             </Box>
@@ -156,12 +160,16 @@ export default function OnTheSubjectOfWhosOnFirst() {
         <Box mr="16px">
           <Typography>Step 2</Typography>
         </Box>
-        {step2[step2Result] &&
-          step2[step2Result].split(",").map(word => (
-            <Box mr="8px">
-              <SelectableChip variant="outlined" label={word} />
-            </Box>
-          ))}
+        <Box display="flex">
+          {step2Word &&
+            step2[Object.keys(step2).find(w => w === step2Word)]
+              .split(",")
+              .map(word => (
+                <Box mr="8px">
+                  <SelectableChip variant="outlined" label={word} />
+                </Box>
+              ))}
+        </Box>
       </Box>
       <Divider />
       <Box p="16px" display="flex" flexWrap="wrap">
@@ -173,6 +181,7 @@ export default function OnTheSubjectOfWhosOnFirst() {
                 onClick={() => handleStep2Click(word)}
                 variant="outlined"
                 label={word}
+                selected={step2Word === word}
                 style={{ width: "84px" }}
               />
             </Box>

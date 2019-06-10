@@ -5,9 +5,9 @@ import Typography from "@material-ui/core/Typography";
 import { Context } from "../State";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
-import ColorSelector from "./ColorSelector";
+import ColorSelector, { Color } from "./ColorSelector";
 
-function onTheSubjectOfSimonSays(hasVowel, strikeCount, colors) {
+function getMappedColors(hasVowel, strikeCount, colors) {
   const colorMappers = [
     [
       {
@@ -63,15 +63,13 @@ export default function OnTheSubjectOfSimonSays() {
   const handleSimonSaysSteps = (i, color) => {
     const _colors = [...colors];
     _colors[i] = color;
-    _colors.push("");
+    if (i === _colors.length - 1) {
+      _colors.push("");
+    }
     setColors(_colors);
   };
 
-  const results = onTheSubjectOfSimonSays(
-    hasVowel,
-    strikes,
-    colors
-  );
+  const mappedColors = getMappedColors(hasVowel, strikes, colors);
 
   return (
     <Paper>
@@ -90,20 +88,24 @@ export default function OnTheSubjectOfSimonSays() {
       <Box p="16px">
         {colors.map((color, i) => (
           <Box display="flex" alignItems="center" mb="16px">
-            <Box mr="16px">
-              <Typography>Round {i + 1}</Typography>
+            <Box mr="16px" width="72px">
+              <Typography>Color {i + 1}</Typography>
             </Box>
             <ColorSelector
-              colors={["b", "g", "y", "r"]}
+              colors="bgyr"
               onChange={color => handleSimonSaysSteps(i, color)}
               selected={color}
             />
           </Box>
         ))}
-        <Box>
-          <Typography>Results: </Typography>
-          {results.map(r => (
-            <Typography>{r}</Typography>
+        <Box display="flex">
+          <Box mr="16px" width="72px">
+            <Typography>Mapped</Typography>
+          </Box>
+          {mappedColors.slice(0, -1).map(r => (
+            <Box mr="16px">
+              <Color color={r} />
+            </Box>
           ))}
         </Box>
       </Box>
