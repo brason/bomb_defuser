@@ -85,29 +85,36 @@ export default function OnTheSubjectOfSimonSays() {
         </Button>
       </Box>
       <Divider />
-      <Box p="16px">
+      <Box p="16px" display="flex">
         {colors.map((color, i) => (
-          <Box display="flex" alignItems="center" mb="16px">
-            <Box mr="16px" width="72px">
+          <Box
+            display="flex"
+            alignItems="center"
+            mr="16px"
+            flexDirection="column"
+          >
+            <Box mb="16px">
               <Typography>Color {i + 1}</Typography>
             </Box>
             <ColorSelector
               colors="bgyr"
               onChange={color => handleSimonSaysSteps(i, color)}
               selected={color}
+              vertical
             />
           </Box>
         ))}
-        <Box display="flex">
-          <Box mr="16px" width="72px">
-            <Typography>Mapped</Typography>
-          </Box>
-          {mappedColors.slice(0, -1).map(r => (
-            <Box mr="16px">
-              <Color color={r} />
-            </Box>
-          ))}
+      </Box>
+      <Divider />
+      <Box display="flex" p="16px">
+        <Box mr="16px" width="72px">
+          <Typography variant="h6">Mapped</Typography>
         </Box>
+        {mappedColors.slice(0, -1).map(r => (
+          <Box mr="16px">
+            <Color color={r} />
+          </Box>
+        ))}
       </Box>
     </Paper>
   );

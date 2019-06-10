@@ -102,16 +102,17 @@ export default function OnTheSubjectOfWires() {
         </Button>
       </Box>
       <Divider />
-      <Box p="16px">
+      <Box p="16px" display="flex">
         {wires.map((wireColor, i) => (
-          <Box display="flex" alignItems="center" mb="16px">
-            <Box mr="16px">
+          <Box display="flex" mr="16px" flexDirection="column">
+            <Box mb="16px">
               <Typography>Wire {i + 1}</Typography>
             </Box>
             <ColorSelector
               colors="bwkyr"
               onChange={color => handleWireChange(i, color)}
               selected={wireColor}
+              vertical
             />
           </Box>
         ))}

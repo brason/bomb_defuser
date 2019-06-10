@@ -37,11 +37,20 @@ export function Color({ color, selected, onClick }) {
   );
 }
 
-export default function ColorSelector({ colors, selected, onChange }) {
+export default function ColorSelector({
+  colors,
+  selected,
+  onChange,
+  vertical
+}) {
   return (
-    <Box display="flex">
-      {colors.split('').map(color => (
-        <Box mr="16px" color={color}>
+    <Box display="flex" {...vertical && { flexDirection: "column" }}>
+      {colors.split("").map(color => (
+        <Box
+          {...vertical && { mb: "16px" }}
+          {...!vertical && { mr: "16px" }}
+          color={color}
+        >
           <Color
             onClick={() => onChange(color)}
             selected={color === selected}
