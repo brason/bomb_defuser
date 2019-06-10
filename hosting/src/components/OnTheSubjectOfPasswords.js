@@ -92,7 +92,7 @@ export default function OnTheSubjectOfPasswords() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Passwords</Typography>
+        <Typography variant="h5">On the Subject of Passwords</Typography>
         <Button onClick={handleReset} variant="outlined">
           Reset
         </Button>

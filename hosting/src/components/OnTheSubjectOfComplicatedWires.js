@@ -84,7 +84,7 @@ export default function OnTheSubjectOfComplicatedWires() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">
+        <Typography variant="h5">
           On the Subject of Complicated Wires
         </Typography>
         <Button onClick={() => reset()} variant="outlined">

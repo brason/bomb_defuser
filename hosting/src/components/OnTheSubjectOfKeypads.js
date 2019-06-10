@@ -145,7 +145,7 @@ export default function OnTheSubjectOfKeypads() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Keypads</Typography>
+        <Typography variant="h5">On the Subject of Keypads</Typography>
         <Button onClick={reset} variant="outlined">
           Reset
         </Button>

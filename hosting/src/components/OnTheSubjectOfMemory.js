@@ -86,7 +86,7 @@ export default function OnTheSubjectOfMemory() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Memory</Typography>
+        <Typography variant="h5">On the Subject of Memory</Typography>
         <Button onClick={reset} variant="outlined">
           Reset
         </Button>

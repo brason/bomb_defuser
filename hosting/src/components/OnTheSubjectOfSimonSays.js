@@ -79,7 +79,7 @@ export default function OnTheSubjectOfSimonSays() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Simon Says</Typography>
+        <Typography variant="h5">On the Subject of Simon Says</Typography>
         <Button variant="outlined" onClick={() => setColors([""])}>
           Reset
         </Button>
@@ -106,10 +106,7 @@ export default function OnTheSubjectOfSimonSays() {
         ))}
       </Box>
       <Divider />
-      <Box display="flex" p="16px">
-        <Box mr="16px" width="72px">
-          <Typography variant="h6">Mapped</Typography>
-        </Box>
+      <Box display="flex" p="16px" height="32px">
         {mappedColors.slice(0, -1).map(r => (
           <Box mr="16px">
             <Color color={r} />

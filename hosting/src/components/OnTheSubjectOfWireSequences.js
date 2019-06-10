@@ -46,7 +46,7 @@ export default function OnTheSubjectOfWireSequences() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Wire Sequences</Typography>
+        <Typography variant="h5">On the Subject of Wire Sequences</Typography>
         <Button onClick={reset} variant="outlined">
           Reset
         </Button>

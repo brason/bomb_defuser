@@ -96,7 +96,7 @@ export default function OnTheSubjectOfWires() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Wires</Typography>
+        <Typography variant="h5">On the Subject of Wires</Typography>
         <Button variant="outlined" onClick={() => setWires(["", "", ""])}>
           Reset
         </Button>
@@ -119,7 +119,7 @@ export default function OnTheSubjectOfWires() {
       </Box>
       <Divider />
       <Box p="16px">
-        <Typography>Wire to cut: {wireToCut}</Typography>
+        <Typography variant="h6">Wire to cut: {wireToCut}</Typography>
       </Box>
     </Paper>
   );

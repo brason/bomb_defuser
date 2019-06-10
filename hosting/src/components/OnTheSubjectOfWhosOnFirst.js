@@ -127,7 +127,7 @@ export default function OnTheSubjectOfWhosOnFirst() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h6">On the Subject of Who's on First</Typography>
+        <Typography variant="h5">On the Subject of Who's on First</Typography>
         <Button onClick={reset} variant="outlined">
           Reset
         </Button>
