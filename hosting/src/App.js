@@ -11,6 +11,7 @@ import OnTheSubjectOfKeypads from "./components/OnTheSubjectOfKeypads";
 import OnTheSubjectOfSimonSays from "./components/OnTheSubjectOfSimonSays";
 import OnTheSubjectOfPasswords from "./components/OnTheSubjectOfPasswords";
 import OnTheSubjectOfWhosOnFirst from "./components/OnTheSubjectOfWhosOnFirst";
+import OnTheSubjectOfMemory from "./components/OnTheSubjectOfMemory";
 
 export default function App() {
   return (
@@ -41,8 +42,11 @@ export default function App() {
             <Box mb="16px">
               <OnTheSubjectOfPasswords />
             </Box>
-            <Box>
+            <Box mb="16px">
               <OnTheSubjectOfWhosOnFirst />
+            </Box>
+            <Box>
+              <OnTheSubjectOfMemory/>
             </Box>
           </Box>
         </Box>
