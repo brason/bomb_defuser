@@ -9,19 +9,20 @@ import SelectableChip from "./SelectableChip";
 import ColorSelector from "./ColorSelector";
 
 function getAction(color, label, batteryCount, indicators) {
-  const hold = "HOLD - BLUE: 4, YELLOW: 5, OTHER: 1";
+  const hold = "HOLD";
+  const pressAndRelease = "PRESS AND RELEASE";
   if (color === "b" && label === "ABORT") {
     return hold;
   } else if (batteryCount > 1 && label === "DETONATE") {
-    return "PRESS AND RELEASE";
+    return pressAndRelease;
   } else if (color === "w" && indicators.includes("car")) {
     return hold;
   } else if (batteryCount > 2 && indicators.includes("frk")) {
-    return "PRESS AND RELEASE";
+    return pressAndRelease;
   } else if (color === "y") {
     return hold;
   } else if (color === "r" && label === "HOLD") {
-    return "PRESS AND RELEASE";
+    return pressAndRelease;
   } else {
     return hold;
   }
@@ -37,6 +38,8 @@ export default function OnTheSubjectOfTheButton() {
     setColor("");
     setLabel("");
   }
+
+  const action = getAction(color, label, batteryCount, indicators);
 
   return (
     <Paper>
@@ -73,10 +76,17 @@ export default function OnTheSubjectOfTheButton() {
         ))}
       </Box>
       <Divider />
-      <Box p="16px">
-        <Typography>
-          ACTION: {getAction(color, label, batteryCount, indicators)}
-        </Typography>
+      <Box p="16px" display="flex" justifyContent="space-between">
+        <Typography variant="h6">ACTION: {action}</Typography>
+        {action === "HOLD" && (
+          <Box display="flex">
+            {["Blue: 4", "Yellow: 5", "Other: 1"].map(label => (
+              <Box mr="16px">
+                <Typography variant="h6">{label}</Typography>
+              </Box>
+            ))}
+          </Box>
+        )}
       </Box>
     </Paper>
   );
