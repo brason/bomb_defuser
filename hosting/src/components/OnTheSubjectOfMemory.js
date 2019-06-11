@@ -53,7 +53,11 @@ export default function OnTheSubjectOfMemory() {
 
   const inputRefs = [input1Ref, input2Ref, input3Ref, input4Ref, input5Ref];
 
-  const reset = () => {};
+  const reset = () => {
+    setStage(0);
+    setButtonHistory({});
+    inputRefs.forEach(ref => (ref.current.value = null));
+  };
 
   const handleChange = () => {
     focusIndex.current = (focusIndex.current + 1) % 5;

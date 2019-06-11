@@ -103,6 +103,7 @@ export default function OnTheSubjectOfPasswords() {
           <TextField
             variant="outlined"
             label="Position 1"
+            value={lettersAtPosition[0]}
             onChange={handleLettersChange(0)}
           />
         </Box>
@@ -110,6 +111,7 @@ export default function OnTheSubjectOfPasswords() {
           <TextField
             variant="outlined"
             label="Position 2"
+            value={lettersAtPosition[1]}
             onChange={handleLettersChange(1)}
           />
         </Box>
@@ -117,6 +119,7 @@ export default function OnTheSubjectOfPasswords() {
           <TextField
             variant="outlined"
             label="Position 3"
+            value={lettersAtPosition[2]}
             onChange={handleLettersChange(2)}
           />
         </Box>

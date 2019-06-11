@@ -77,23 +77,22 @@ function TextMaskCustom(props) {
 export default function OnTheSubjectOfMorseCode() {
   const [code, setCode] = useState("");
   const [letters, setLetters] = useState([]);
-  const [candidates, setCandidates] = useState([]);
-  const reset = () => {};
+
+  const reset = () => {
+    setCode("");
+    setLetters([]);
+  };
 
   const handleEnter = event => {
     setLetters([...letters, codeToLetter[code.replace(/_/g, "")]]);
     setCode("");
   };
 
-  useEffect(() => {
-    const words = Object.keys(wordToFrequency);
+  const words = Object.keys(wordToFrequency);
 
-    const candidates = words.filter(word =>
-      letters.every(letter => word.includes(letter))
-    );
-
-    setCandidates(candidates);
-  }, [letters]);
+  const candidates = words.filter(word =>
+    letters.every(letter => word.includes(letter))
+  );
 
   return (
     <Paper>
@@ -127,7 +126,7 @@ export default function OnTheSubjectOfMorseCode() {
             }}
           />
         </Box>
-        <Box display="flex" alignItems="center">
+        <Box display="flex" alignItems="center" mb="16px">
           {letters.map(letter => (
             <Box mr="16px">
               <Chip variant="outlined" label={letter} />
@@ -137,7 +136,10 @@ export default function OnTheSubjectOfMorseCode() {
         <Box display="flex" flexWrap="wrap">
           {candidates.map(word => (
             <Box mr="16px" mb="16px">
-              <Chip variant="outlined" label={`${word} (${wordToFrequency[word]})`} />
+              <Chip
+                variant="outlined"
+                label={`${word} (${wordToFrequency[word]})`}
+              />
             </Box>
           ))}
         </Box>
