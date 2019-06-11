@@ -64,6 +64,9 @@ export default function App() {
             <Box>
               <OnTheSubjectOfMorseCode />
             </Box>
+            <Box>
+              <OnTheSubjectOfMorseCode />
+            </Box>
           </Box>
         </Box>
       </Box>
