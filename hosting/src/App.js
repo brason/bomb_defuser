@@ -15,6 +15,7 @@ import OnTheSubjectOfMemory from "./components/OnTheSubjectOfMemory";
 import OnTheSubjectOfComplicatedWires from "./components/OnTheSubjectOfComplicatedWires";
 import OnTheSubjectOfMazes from "./components/OnTheSubjectOfMazes";
 import OnTheSubjectOfWireSequences from "./components/OnTheSubjectOfWireSequences";
+import OnTheSubjectOfMorseCode from "./components/OnTheSubjectOfMorseCode";
 
 export default function App() {
   return (
@@ -59,6 +60,9 @@ export default function App() {
             </Box>
             <Box mb="16px">
               <OnTheSubjectOfWireSequences />
+            </Box>
+            <Box>
+              <OnTheSubjectOfMorseCode />
             </Box>
           </Box>
         </Box>
