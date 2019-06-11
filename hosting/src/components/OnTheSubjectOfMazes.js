@@ -148,6 +148,51 @@ const mazes = [
   ]
 ];
 
+const marker2Maze = {
+  "3:1": 0,
+  "5:11": 0,
+  "7:3": 1,
+  "3:9": 1,
+  "7:7": 2,
+  "7:11": 2,
+  "1:1": 3,
+  "7:1": 3,
+  "5:9": 4,
+  "11:7": 4,
+  "1:9": 5,
+  "9:5": 5,
+  "1:3": 6,
+  "11:3": 6,
+  "1:7": 7,
+  "7:5": 7,
+  "3:5": 8,
+  "9:1": 8
+};
+
+function getPath(maze, startX, startY, endX, endY) {
+  const path = new Set();
+
+  const step = (x, y) => {
+    if (maze[x][y] === 1 || path.has(`${x}:${y}`)) return false;
+
+    path.add(`${x}:${y}`);
+
+    const pos = [[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]];
+
+    if ((x === endX && y === endY) || pos.some(([x, y]) => step(x, y))) {
+      return true;
+    }
+
+    path.delete(`${x}:${y}`);
+
+    return false;
+  };
+
+  step(startX, startY);
+
+  return path;
+}
+
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
 
@@ -163,7 +208,7 @@ function TextMaskCustom(props) {
         "w",
         ":",
         " ",
-        /\d/,
+        /[1-6]/,
         " ",
         "-",
         " ",
@@ -172,36 +217,50 @@ function TextMaskCustom(props) {
         "l",
         ":",
         " ",
-        /\d/
+        /[1-6]/
       ]}
     />
   );
 }
 
 export default function OnTheSubjectOfMazes() {
-  const [markers, setMarkers] = useState({
-    marker1: "",
-    marker2: "",
+  const [points, setPoints] = useState({
+    marker: "",
     start: "",
     end: ""
   });
-
-  useEffect(() => {
-    const [row, col] = markers.marker1.replace(/\D+/g, "").split("");
-    console.log(row, col);
-  }, [markers]);
+  const [solution, setSolution] = useState(new Set());
+  const [mazeIndex, setMazeIndex] = useState(0);
 
   const handleChange = m => event => {
-    setMarkers({ ...markers, [m]: event.currentTarget.value });
+    setPoints({ ...points, [m]: event.currentTarget.value });
   };
 
   const reset = () => {
-    setMarkers({
-      marker1: "",
-      marker2: "",
+    setPoints({
+      marker: "",
       start: "",
       end: ""
     });
+  };
+
+  const solve = () => {
+    const getCoord = str =>
+      str
+        .replace(/\D+/g, "")
+        .split("")
+        .map(n => (Number(n) - 1) * 2 + 1);
+
+    const [markerX, markerY] = getCoord(points.marker);
+    const index = marker2Maze[`${markerX}:${markerY}`];
+
+    const path = getPath(
+      mazes[index],
+      ...getCoord(points.start),
+      ...getCoord(points.end)
+    );
+    setMazeIndex(index);
+    setSolution(path);
   };
 
   return (
@@ -220,35 +279,48 @@ export default function OnTheSubjectOfMazes() {
       <Divider />
       <Box p="16px">
         <Box display="flex" mb="16px">
-          {[
-            ["Marker 1", "marker1"],
-            ["Marker 2", "marker2"],
-            ["Start", "start"],
-            ["End", "end"]
-          ].map(([label, m]) => (
-            <Box mr="16px" width="140px">
-              <TextField
-                label={label}
-                variant="outlined"
-                value={markers[m]}
-                onFocus={event => event.currentTarget.select()}
-                onChange={handleChange(m)}
-                InputProps={{
-                  inputComponent: TextMaskCustom
-                }}
-              />
-            </Box>
-          ))}
+          {[["Marker", "marker"], ["Start", "start"], ["End", "end"]].map(
+            ([label, m]) => (
+              <Box mr="16px" width="140px">
+                <TextField
+                  label={label}
+                  variant="outlined"
+                  value={points[m]}
+                  onFocus={event => event.currentTarget.select()}
+                  onChange={handleChange(m)}
+                  InputProps={{
+                    inputComponent: TextMaskCustom
+                  }}
+                />
+              </Box>
+            )
+          )}
+          <Button variant="outlined" onClick={solve}>
+            Solve
+          </Button>
         </Box>
         <Box>
-          {mazes[0].map(row => (
+          {mazes[mazeIndex].map((row, x) => (
             <Box display="flex">
-              {row.map(cell => (
+              {row.map((col, y) => (
                 <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
                   width={size}
                   height={size}
-                  {...cell && { bgcolor: "black" }}
-                />
+                  {...col && { bgcolor: "black" }}
+                  {...solution.has(`${x}:${y}`) && { bgcolor: "red" }}
+                >
+                  {x % 2 === 1 && y % 2 === 1 && (
+                    <Box
+                      width="5px"
+                      height="5px"
+                      bgcolor="rgba(0, 0, 0, 0.5)"
+                      borderRadius="100%"
+                    />
+                  )}
+                </Box>
               ))}
             </Box>
           ))}

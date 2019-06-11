@@ -49,10 +49,10 @@ export default function App() {
               <OnTheSubjectOfWhosOnFirst />
             </Box>
             <Box mb="16px">
-              <OnTheSubjectOfMemory/>
+              <OnTheSubjectOfMemory />
             </Box>
             <Box mb="16px">
-              <OnTheSubjectOfComplicatedWires/>
+              <OnTheSubjectOfComplicatedWires />
             </Box>
             <Box mb="16px">
               <OnTheSubjectOfMazes />
