@@ -6,7 +6,7 @@ import { Context } from "../State";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 
-const baseUrl = "http://www.bombmanual.com/manual/1/html/img/symbols";
+const baseUrl = "http://www.bombmanual.com/web/img/modules/keypad";
 
 const symbolNumber = {
   ae: "14",
